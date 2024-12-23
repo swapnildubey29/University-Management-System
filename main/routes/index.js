@@ -30,6 +30,57 @@ router.get('/index-2', (req,res) => {
     res.render('index-2')
 })
 
+router.get('/404', (req,res) => {
+    res.render('404')
+})
+
+router.get('/500', (req,res) => {
+    res.render('500')
+})
+
+router.get('/accordion', (req,res) => {
+    res.render('accordion')
+})
+
+router.get('/add-course', (req,res) => {
+    res.render('add-course')
+})
+
+router.get('/add-department', (req,res) => {
+    res.render('add-department')
+})
+
+router.get('/add-library-assets', (req,res) => {
+    res.render('add-library-assets')
+})
+
+router.get('/add-professor', (req,res) => {
+    res.render('add-professor')
+})
+
+router.get('/add-student', (req,res) => {
+    res.render('add-student')
+})
+
+router.get('/alerts', (req,res) => {
+    res.render('alerts')
+})
+
+router.get('/advance-form-element', (req,res) => {
+    res.render('advance-form-element')
+})
+
+router.get('/all-courses', (req,res) => {
+    res.render('all-courses')
+})
+
+router.get('/all-professors', (req,res) => {
+    res.render('all-professors')
+})
+
+router.get('/all-students', (req,res) => {
+    res.render('all-students')
+})
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
 

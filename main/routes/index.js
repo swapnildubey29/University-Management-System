@@ -1,23 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
+const {AddProfessor} = require('../controllers/professorController')
 
-// Rendering Homepage
+// Rendering Page
 router.get('/', (req,res) => {
     res.render('index')
 })
 
-// Rendering Signup page
 router.get('/signup', (req,res) => {
     res.render('signup')
 })
 
-// Rendering Dashboard page
 router.get('/dashboard', (req,res) => {
     res.render('dashboard')
 })
 
-// Rendering Forget password page
 router.get('/forgotpassword', (req,res) => {
     res.render('forgotpassword')
 })
@@ -292,6 +290,7 @@ router.post('/resetpassword', resetpassword)
 router.post('/logout', logout)
 
 //Router to Add Professor
+router.post('/AddProfessor', AddProfessor)
 
 
 module.exports = router

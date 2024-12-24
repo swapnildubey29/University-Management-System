@@ -292,8 +292,7 @@ router.post('/logout', logout)
 //Router to Add Professor info
 router.post('/AddProfessor', AddProfessor)
 
-//Router to Save Professor Account info
-router.post('/ProfessorAccntInfo', ProfessorAccntInfo)
+//Router to 
 
 
 module.exports = router;

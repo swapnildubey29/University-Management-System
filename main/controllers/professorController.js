@@ -1,4 +1,5 @@
 const db = require('../config/db')
+const bcrypt = require('bcrypt')
 
 const AddProfessor = async (req, res) => {
     const { name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl } = req.body;
@@ -26,10 +27,6 @@ const AddProfessor = async (req, res) => {
     }
 };
 
-const ProfessorAccntInfo = async (req,res) => {
-        
-}
 
 
-
-module.exports = {AddProfessor, ProfessorAccntInfo,}
+module.exports = {AddProfessor,}

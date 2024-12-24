@@ -26,6 +26,10 @@ const AddProfessor = async (req, res) => {
     }
 };
 
+const ProfessorAccntInfo = async (req,res) => {
+        
+}
 
 
-module.exports = {AddProfessor,}
+
+module.exports = {AddProfessor, ProfessorAccntInfo,}

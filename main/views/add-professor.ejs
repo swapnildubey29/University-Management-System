@@ -1704,12 +1704,12 @@
 
             if (!name || !address || !mobile || !dob || !postcode || !department || !gender || !country || !state || !city) {
                 alert("Please enter all the fields.");
-                return; 
+                return;
             }
 
             fetch('/AddProfessor', {
                 method: 'POST',
-                body: JSON.stringify(data), 
+                body: JSON.stringify(data),
                 headers: {
                     'content-type': 'application/json',
                 },
@@ -1728,6 +1728,47 @@
                     alert("An error occurred while saving Professor. Please try again.");
                 });
         });
+
+        //Professor Account Detail
+        document.getElementById("professorAccntInfo").addEventListener('submitAccntinfo', () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmpassword = document.getElementById('confirmpassword').value;
+
+            const data = { email, password }
+
+            if (!email || !password || !confirmpassword) {
+                alert("Please enter all the fields")
+            }
+
+            if (password !== confirmpassword) {
+                alert("Password does not matched.")
+            }
+
+            fetch('/ProfessorAccntInfo', {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'contents': 'application/json'
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        alert("Professor added Successfully.")
+                        window.location.reload();
+                    } else {
+                        alert("Failed to add professor.");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("An error occurred while saving Professor. Please try again.");
+                });
+        })
+
+
+
 
 
 

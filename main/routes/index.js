@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
-const {AddProfessor} = require('../controllers/professorController')
+const {AddProfessor, ProfessorAccntInfo} = require('../controllers/professorController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -289,8 +289,11 @@ router.post('/resetpassword', resetpassword)
 //Router to Logout
 router.post('/logout', logout)
 
-//Router to Add Professor
+//Router to Add Professor info
 router.post('/AddProfessor', AddProfessor)
 
+//Router to Save Professor Account info
+router.post('/ProfessorAccntInfo', ProfessorAccntInfo)
 
-module.exports = router
+
+module.exports = router;

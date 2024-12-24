@@ -1092,23 +1092,23 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
-                                                    <form action="/upload" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                                    <form id="professorBasicInfo" action="/upload" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <input name="firstname" type="text" class="form-control" placeholder="Full Name">
+                                                                    <input id="name" name="firstname" type="text" class="form-control" placeholder="Full Name">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="address" type="text" class="form-control" placeholder="Address">
+                                                                    <input id="address" name="address" type="text" class="form-control" placeholder="Address">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="mobileno" type="number" class="form-control" placeholder="Mobile no.">
+                                                                    <input id="mobile" name="mobileno" type="number" class="form-control" placeholder="Mobile no.">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <input name="finish" id="dob" type="text" class="form-control" placeholder="Date of Birth">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="finish" id="finish" type="text" class="form-control" placeholder="Date of Birth">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input name="postcode" id="postcode" type="text" class="form-control" placeholder="Postcode">
+                                                                    <input id="postcode" name="postcode" id="postcode" type="text" class="form-control" placeholder="Postcode">
                                                                 </div>
                                                                 <div class="form-group alert-up-pd">
                                                                     <div class="dz-message needsclick download-custom">
@@ -1116,65 +1116,65 @@
                                                                         <h2 class="edudropnone">Drop image here or click to upload.</h2>
                                                                         <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
                                                                         </p>
-                                                                        <input name="imageico" class="hd-pro-img" type="text" />
+                                                                        <input id="profimage" name="imageico" class="hd-pro-img" type="text" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <input name="department" type="text" class="form-control" placeholder="Department">
+                                                                    <input id="department" name="department" type="text" class="form-control" placeholder="Department">
                                                                 </div>
                                                                 <div class="form-group res-mg-t-15">
-                                                                    <textarea name="description" placeholder="Description"></textarea>
+                                                                    <textarea id="description" name="description" placeholder="Description"></textarea>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select name="gender" class="form-control">
+                                                                    <select id="gender" name="gender" class="form-control">
 																		<option value="none" selected="" disabled="">Select Gender</option>
-																		<option value="0">Male</option>
-																		<option value="1">Female</option>
+																		<option value="Male">Male</option>
+																		<option value="Female">Female</option>
 																	</select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select name="country" class="form-control">
+                                                                    <select id="country" name="country" class="form-control">
 																			<option value="none" selected="" disabled="">Select country</option>
-																			<option value="0">India</option>
-																			<option value="1">Pakistan</option>
-																			<option value="2">Amerika</option>
-																			<option value="3">China</option>
-																			<option value="4">Dubai</option>
-																			<option value="5">Nepal</option>
+																			<option value="India">India</option>
+																			<option value="Pakistan">Pakistan</option>
+																			<option value="USA">USA</option>
+																			<option value="China">China</option>
+																			<option value="Dubai">Dubai</option>
+																			<option value="Nepal">Nepal</option>
 																		</select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select name="state" class="form-control">
+                                                                    <select id="state" name="state" class="form-control">
 																			<option value="none" selected="" disabled="">Select state</option>
-																			<option value="0">Gujarat</option>
-																			<option value="1">Maharastra</option>
-																			<option value="2">Rajastan</option>
-																			<option value="3">Maharastra</option>
-																			<option value="4">Rajastan</option>
-																			<option value="5">Gujarat</option>
+																			<option value="Gujarat">Gujarat</option>
+																			<option value="Maharastra">Maharastra</option>
+																			<option value="Rajastan">Rajastan</option>
+																			<option value="Madhya Pradesh">Madhya Pradesh</option>
+																			<option value="NEW DELHI">NEW DELHI</option>
+																			<option value="CHANDIGARH">CHANDIGARH</option>
 																		</select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select name="city" class="form-control">
+                                                                    <select id="city" name="city" class="form-control">
 																			<option value="none" selected="" disabled="">Select city</option>
-																			<option value="0">Surat</option>
-																			<option value="1">Baroda</option>
-																			<option value="2">Navsari</option>
-																			<option value="3">Baroda</option>
-																			<option value="4">Surat</option>
+																			<option value="Surat">Surat</option>
+																			<option value="Baroda">Baroda</option>
+																			<option value="Navsari">Navsari</option>
+																			<option value="Mumbai">Mumbai</option>
+																			<option value="Jaipur">Jaipur</option>
 																		</select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="website" type="text" class="form-control" placeholder="Website URL">
+                                                                    <input id="weburl" name="website" type="text" class="form-control" placeholder="Website URL">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                    <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1190,21 +1190,21 @@
                                             <div class="review-content-section">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <form id="acount-infor" action="#" class="acount-infor">
+                                                        <form id="professorAccntInfo" action="#" class="acount-infor">
                                                             <div class="devit-card-custom">
                                                                 <div class="form-group">
                                                                     <input type="text" class="form-control" name="email" placeholder="Email">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="phoneno" type="number" class="form-control" placeholder="Phone">
+                                                                    <input id="phone" name="phoneno" type="number" class="form-control" placeholder="Phone">
                                                                 </div>
-                                                                <div class="form-group">
+                                                                <div id="password" class="form-group">
                                                                     <input name="password" type="password" class="form-control" placeholder="Password">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="confarmpassword" type="password" class="form-control" placeholder="Confirm Password">
+                                                                    <input id="confirmpassword" name="confirmpassword" type="password" class="form-control" placeholder="Confirm Password">
                                                                 </div>
-                                                                <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
+                                                                <a id="submitAccntinfo" href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -1213,7 +1213,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="INFORMATION">
+                                <div class="product-tab-list tab-pane fade" id="professorSocialInfo">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
@@ -1221,18 +1221,18 @@
 													<div class="col-lg-12">
 														<div class="devit-card-custom">
 															<div class="form-group">
-																<input type="url" class="form-control" placeholder="Facebook URL">
+																<input id="fburl" type="url" class="form-control" placeholder="Facebook URL">
 															</div>
 															<div class="form-group">
-																<input type="url" class="form-control" placeholder="Twitter URL">
+																<input id="twitterurl" type="url" class="form-control" placeholder="Twitter URL">
 															</div>
 															<div class="form-group">
-																<input type="url" class="form-control" placeholder="Google Plus">
+																<input id="googleplusurl" type="url" class="form-control" placeholder="Google Plus">
 															</div>
 															<div class="form-group">
-																<input type="url" class="form-control" placeholder="Linkedin URL">
+																<input id="linkedinurl" type="url" class="form-control" placeholder="Linkedin URL">
 															</div>
-															<button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+															<button id="submitSocialinfo" type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
 														</div>
 													</div>
 												</div>
@@ -1251,7 +1251,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="footer-copy-right">
-                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                            <p>Copyright © 2024. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
                         </div>
                     </div>
                 </div>
@@ -1328,6 +1328,30 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="js/tawk-chat.js"></script>
+
+    <script>
+        document.getElementById("professorBasicInfo").addEventListener('submit', (event) => {
+           event.preventDefault()
+
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const mobile = document.getElementById("mobile").value;
+            const dob = document.getElementById("dob").value;
+            const postcode = document.getElementById("postcode").value;
+            const image = document.getElementById("profimage").value;
+            const department = document.getElementById("department").value;
+            const description = document.getElementById("description").value;
+            const gender = document.getElementById("gender").value;
+            const country = document.getElementById("country").value;
+            const state = document.getElementById("state").value;
+            const city = document.getElementById("city").value;
+            const weburl = document.getElementById("weburl").value;
+
+            // console.log({ name, address, mobile, dob, postcode, image, department, description, gender, country, state, city, weburl });
+
+
+        })
+    </script>
 </body>
 
 </html>

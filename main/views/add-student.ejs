@@ -1083,8 +1083,8 @@
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#description">Basic Information</a></li>
-                                <li><a href="#reviews"> Account Information</a></li>
-                                <li><a href="#INFORMATION">Social Information</a></li>
+                                <!-- <li><a href="#reviews"> Account Information</a></li>
+                                <li><a href="#INFORMATION">Social Information</a></li> -->
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -1092,90 +1092,104 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
-                                                    <form action="/upload" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                                    <form action="#" class="dropzone dropzone-custom needsclick add-professors" id="studentBasicInfo">
                                                         <div class="row">
-                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                <div class="form-group">
-                                                                    <input name="firstname" type="text" class="form-control" placeholder="Full Name">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input name="address" type="text" class="form-control" placeholder="Address">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input name="mobileno" type="number" class="form-control" placeholder="Mobile no.">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input name="finish" id="finish" type="text" class="form-control" placeholder="Date of Birth">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input name="postcode" id="postcode" type="text" class="form-control" placeholder="Postcode">
-                                                                </div>
-                                                                <div class="form-group alert-up-pd">
-                                                                    <div class="dz-message needsclick download-custom">
-                                                                        <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                                                        <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                                                        <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
-                                                                        </p>
-                                                                        <input name="imageico" class="hd-pro-img" type="text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                <div class="form-group">
-                                                                    <input name="department" type="text" class="form-control" placeholder="Department">
-                                                                </div>
-                                                                <div class="form-group res-mg-t-15">
-                                                                    <textarea name="description" placeholder="Description"></textarea>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <select name="gender" class="form-control">
-																		<option value="none" selected="" disabled="">Select Gender</option>
-																		<option value="Male">Male</option>
-																		<option value="Female">Female</option>
-																	</select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <select name="country" class="form-control">
-                                                                        <option value="none" selected="" disabled="">Select country</option>
-                                                                        <option value="India">India</option>
-                                                                        <option value="Pakistan">Pakistan</option>
-                                                                        <option value="USA">USA</option>
-                                                                        <option value="China">China</option>
-                                                                        <option value="Dubai">Dubai</option>
-                                                                        <option value="Nepal">Nepal</option>
-																		</select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <select name="state" class="form-control">
-                                                                        <option value="none" selected="" disabled="">Select state</option>
-                                                                        <option value="Gujarat">Gujarat</option>
-                                                                        <option value="Maharastra">Maharastra</option>
-                                                                        <option value="Rajastan">Rajastan</option>
-                                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                                                        <option value="NEW DELHI">NEW DELHI</option>
-                                                                        <option value="CHANDIGARH">CHANDIGARH</option>
-																		</select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <select name="city" class="form-control">
-                                                                        <option value="none" selected="" disabled="">Select city</option>
-                                                                        <option value="Surat">Surat</option>
-                                                                        <option value="Baroda">Baroda</option>
-                                                                        <option value="Navsari">Navsari</option>
-                                                                        <option value="Mumbai">Mumbai</option>
-                                                                        <option value="Jaipur">Jaipur</option>
-																		</select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input name="website" type="text" class="form-control" placeholder="Website URL">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                                </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="review-content-section">
+                                                                    <div id="dropzone1" class="pro-ad">
+                                                                        <form id="studentBasicInfo" action="#" class="dropzone dropzone-custom needsclick add-professors" >
+                                                                                                                                                    <div class=" row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <input id="name" name="firstname" type="text" class="form-control" placeholder="Full Name">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input id="address" name="address" type="text" class="form-control" placeholder="Address">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input id="mobile" name="mobileno" type="number" class="form-control" placeholder="Mobile no.">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input name="finish" id="dob" type="text" class="form-control" placeholder="Date of Birth">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input id="postcode" name="postcode" id="postcode" type="text" class="form-control" placeholder="Postcode">
+                                                                                </div>
+                                                                                <div class="form-group alert-up-pd">
+                                                                                    <div class="dz-message needsclick download-custom">
+                                                                                        <i class="fa fa-download edudropnone" aria-hidden="true"></i>
+                                                                                        <h2 class="edudropnone">Drop image here or click
+                                                                                            to upload.</h2>
+                                                                                        <p class="edudropnone"><span class="note needsclick">(This is just a
+                                                                                                demo dropzone. Selected image is
+                                                                                                <strong>not</strong> actually
+                                                                                                uploaded.)</span>
+                                                                                        </p>
+                                                                                        <input id="profimage" name="imageico" class="hd-pro-img" type="text" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <input id="department" name="department" type="text" class="form-control" placeholder="Department">
+                                                                                </div>
+                                                                                <div class="form-group res-mg-t-15">
+                                                                                    <textarea id="description" name="description" placeholder="Description"></textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <select id="gender" name="gender" class="form-control">
+                                                                                        <option value="none" selected="" disabled="">
+                                                                                            Select Gender</option>
+                                                                                        <option value="Male">Male</option>
+                                                                                        <option value="Female">Female</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <select id="country" name="country" class="form-control">
+                                                                                        <option value="none" selected="" disabled="">
+                                                                                            Select country</option>
+                                                                                        <option value="India">India</option>
+                                                                                        <option value="Pakistan">Pakistan</option>
+                                                                                        <option value="USA">USA</option>
+                                                                                        <option value="China">China</option>
+                                                                                        <option value="Dubai">Dubai</option>
+                                                                                        <option value="Nepal">Nepal</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <select id="state" name="state" class="form-control">
+                                                                                        <option value="none" selected="" disabled="">
+                                                                                            Select state</option>
+                                                                                        <option value="Gujarat">Gujarat</option>
+                                                                                        <option value="Maharastra">Maharastra</option>
+                                                                                        <option value="Rajastan">Rajastan</option>
+                                                                                        <option value="Madhya Pradesh">Madhya Pradesh
+                                                                                        </option>
+                                                                                        <option value="NEW DELHI">NEW DELHI</option>
+                                                                                        <option value="CHANDIGARH">CHANDIGARH</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <select id="city" name="city" class="form-control">
+                                                                                        <option value="none" selected="" disabled="">
+                                                                                            Select city</option>
+                                                                                        <option value="Surat">Surat</option>
+                                                                                        <option value="Baroda">Baroda</option>
+                                                                                        <option value="Navsari">Navsari</option>
+                                                                                        <option value="Mumbai">Mumbai</option>
+                                                                                        <option value="Jaipur">Jaipur</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input id="weburl" name="website" type="text" class="form-control" placeholder="Website URL">
+                                                                                </div>
+                                                                            </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="payment-adress">
+                                                                                        <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                                    </div>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -1184,7 +1198,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                <!-- <div class="product-tab-list tab-pane fade" id="reviews">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
@@ -1243,7 +1257,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="footer-copyright-area">
             <div class="container-fluid">
                 <div class="row">
@@ -1326,6 +1340,61 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="js/tawk-chat.js"></script>
+
+    <script>
+        document.getElementById("studentBasicInfo").addEventListener('submit', () => {
+            event.preventDefault()
+
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const mobile = document.getElementById("mobile").value;
+            const dobRaw = document.getElementById("dob").value;
+            const dob = new Date(dobRaw).toISOString().split('T')[0];     // Convert to YYYY-MM-DD
+            const postcode = document.getElementById("postcode").value;
+            const image = document.getElementById("profimage").value;
+            const department = document.getElementById("department").value;
+            const description = document.getElementById("description").value;
+            const gender = document.getElementById("gender").value;
+            const country = document.getElementById("country").value;
+            const state = document.getElementById("state").value;
+            const city = document.getElementById("city").value;
+            const weburl = document.getElementById("weburl").value;
+
+            // console.log({ name, address, mobile, dob, postcode, image, department, description, gender, country, state, city, weburl });
+
+            const data = { name, address, mobile, dob, postcode, image, department, description, gender, country, state, city, weburl };
+
+            if (!name || !address || !mobile || !dob || !postcode || !department || !gender || !country || !state || !city) {
+                alert("Please enter all the fields.");
+                return;
+            }
+
+            fetch('/studentBasicInfo', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        alert("Student added Successfully.")
+                        window.location.reload();
+                    } else {
+                        alert("Failed to add student.");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("An error occurred while saving Professor. Please try again.");
+                });
+        });
+
+
+
+
+    </script>
 </body>
 
 </html>

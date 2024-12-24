@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
-const {AddProfessor, ProfessorAccntInfo} = require('../controllers/professorController')
+const {AddProfessor, studentBasicInfo} = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -292,7 +292,10 @@ router.post('/logout', logout)
 //Router to Add Professor info
 router.post('/AddProfessor', AddProfessor)
 
-//Router to 
+//Router to Add Student info
+router.post('/studentBasicInfo',studentBasicInfo)
+
+//Router to Add
 
 
 module.exports = router;

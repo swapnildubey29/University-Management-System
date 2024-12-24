@@ -288,7 +288,10 @@ router.post('/verifyingOtp',verifyingOtp)
 //Router to Reset password
 router.post('/resetpassword', resetpassword)
 
+//Router to Logout
 router.post('/logout', logout)
+
+//Router to Add Professor
 
 
 module.exports = router

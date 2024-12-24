@@ -82,6 +82,48 @@ router.get('/all-students', (req,res) => {
     res.render('all-students')
 })
 
+router.get('/analytics', (req,res) => {
+    res.render("analytics")
+})
+
+router.get('/area-charts', (req,res) => {
+    res.render('area-charts')
+})
+
+router.get('/bar-charts', (req,res) => {
+    res.render('bar-charts')
+})
+
+router.get('/basic-form-element', (req,res) => {
+    res.render('basic-form-element')
+})
+
+router.get('/buttons', (req,res) => {
+    res.render('buttons')
+})
+
+router.get('/c3', (req,res) => {
+    res.render('c3')
+})
+
+router.get('/code-editor', (req,res) => {
+    res.render('code-editor')
+})
+router.get('/course-info', (req,res) => {
+    res.render('course-info')
+})
+
+router.get('/course-payment', (req,res) => {
+    res.render('course-payment')
+})
+
+router.get('/data-maps', (req,res) => {
+    res.render('data-maps')
+})
+
+router.get('/data-table', (req,res) => {
+    res.render('data-table')
+})
 
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------

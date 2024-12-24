@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword} = require('../controllers/IndexController')
+const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
 
 // Rendering Homepage
 router.get('/', (req,res) => {
@@ -287,6 +287,8 @@ router.post('/verifyingOtp',verifyingOtp)
 
 //Router to Reset password
 router.post('/resetpassword', resetpassword)
+
+router.post('/logout', logout)
 
 
 module.exports = router

@@ -266,11 +266,10 @@ const resetpassword = async (req, res) => {
   }
 };
 
-module.exports = {
-  signup,
-  login,
-  verifyJwt,
-  sendOtp,
-  verifyingOtp,
-  resetpassword,
-};
+//Logout
+  const logout = async (req,res) => {
+        res.clearCookie("jwt")
+        res.status(200).json({success: true, message: "Logout successful"})
+  }
+
+module.exports = {signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout};

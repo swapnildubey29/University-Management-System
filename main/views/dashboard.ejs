@@ -406,7 +406,7 @@
                                                         </li>
                                                         <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
-                                                        <li><a href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a id="logout" href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1647,6 +1647,33 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="./js/tawk-chat.js"></script>
+
+    <script>
+        document.getElementById("logout").addEventListener('click', () => {
+              logOutUser();
+        })
+
+        async function logOutUser(){
+            try{
+               const response = await fetch('/logout', {
+                  method: 'POST',
+                  header: {
+                    'content-type': 'application/json'
+                  }
+               })
+                if(!response.ok){
+                    throw new Error(`An error occurred: ${response.statusText}`)
+                }
+                document.cookie = 'jwt=; expires=thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                window.location.href = '/'
+            } catch (error) {
+        console.error('Error logging Out:', error);
+      }
+        }
+
+    </script>
+
 </body>
 
 </html>

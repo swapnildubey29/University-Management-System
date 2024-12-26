@@ -298,7 +298,44 @@ const editlibraryasset = async (req, res) => {
     );
 };
 
+const editdepartment = async (req, res) => {
+    const { name, hod, email, phone, totalstudent, status } = req.body;
+
+    if (!name || !hod || !email || !phone || !totalstudent || !status) {
+        return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const query = `UPDATE alldepartments SET
+        name = ?,
+        hod = ?,
+        email = ?,
+        phone = ?,
+        totalstudent = ?,
+        status = ?
+        WHERE phone = ?
+    `;
+
+    db.query(
+        query,
+        [name, hod, email, phone, totalstudent, status, phone],
+        (err, result) => {
+            if (err) {
+                console.error("Error updating department:", err);
+                return res.status(500).json({ message: "An error occurred while updating the department.", error: err });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: "Department not found or no changes made." });
+            }
+
+            return res.redirect('/edit-department');
+        }
+    );
+};
 
 
 
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo, editstudentinfo, editcourse, editlibraryasset }
+
+
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
+                  editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment }

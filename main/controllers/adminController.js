@@ -1,5 +1,7 @@
 const db = require('../config/db')
 
+// Add details.
+
 const AddProfessor = async (req, res) => {
     const { name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl } = req.body;
 
@@ -95,7 +97,6 @@ const AddstudentBasicInfo = async (req,res) =>{
     const { name, hod, email, phone, totalstudent, status } = req.body;
     // console.log(req.body)
 
-    // Validate input fields
     if (!name || !hod || !email || !phone || !totalstudent || !status) {
         return res.status(400).json({ success: false, message: "All fields are required" })
     }
@@ -112,6 +113,61 @@ const AddstudentBasicInfo = async (req,res) =>{
 };
 
 
+// Edit Details
+
+const editprofessorinfo = async (req, res) => {
+    const {name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl} = req.body;
+     
+    console.log(req.body)
+  
+    if (!mobile) {
+        return res.status(400).json({ message: "Mobile number is required to update professor info." });
+    }
+
+    const checkQuery = `SELECT * FROM professors WHERE mobile = ?`;
+
+    db.query(checkQuery, [mobile], (err, results) => {
+        if (err) {
+            console.error("Error checking professor existence:", err);
+            return res.status(500).json({ message: "An error occurred while checking professor existence.", error: err });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: "No professor found with the provided mobile number." });
+        }
+
+        const updateQuery = `UPDATE professors SET 
+                name = ?, 
+                address = ?, 
+                dob = ?, 
+                postcode = ?,  
+                department = ?, 
+                description = ?, 
+                gender = ?, 
+                country = ?, 
+                state = ?, 
+                city = ?, 
+                weburl = ?
+            WHERE mobile = ?
+        `;
+
+        db.query(updateQuery, [
+            name, address, dob, postcode, department,
+            description, gender, country, state, city, weburl, mobile
+        ], (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error("Error updating professor info:", updateErr);
+                return res.status(500).json({ message: "An error occurred while updating professor info.", error: updateErr });
+            }
+
+            return res.status(200).json({ message: "Professor info updated successfully." });
+        });
+    });
+};
 
 
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, }
+
+
+
+
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo }

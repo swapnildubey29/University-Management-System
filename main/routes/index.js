@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
-     adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset, editdepartment} = require('../controllers/adminController')
+     adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
+      editdepartment, getAllprofessor} = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -319,5 +320,13 @@ router.post('/editlibraryasset',editlibraryasset)
 
 //Router to edit department
 router.post('/editdepartment',editdepartment)
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+// Router to get all professor
+router.get('/getAllprofessor',getAllprofessor)
+
+
 
 module.exports = router;

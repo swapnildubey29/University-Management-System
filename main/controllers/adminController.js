@@ -333,9 +333,21 @@ const editdepartment = async (req, res) => {
     );
 };
 
+  const getAllprofessor = async(req,res) => {
+    const query = `SELECT name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl FROM professors`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching professors:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+  }
 
 
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
-                  editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment }
+                  editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
+                  getAllprofessor, }

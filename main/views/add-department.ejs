@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Add Department | Kiaalap - Kiaalap Admin Template</title>
+    <title>Add Department Kiaalap Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -1080,43 +1080,43 @@
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#description">Add Department</a></li>
-                                <li><a href="#reviews"> Account Information</a></li>
-                                <li><a href="#INFORMATION">Social Information</a></li>
+                                <!-- <li><a href="#reviews"> Account Information</a></li>
+                                <li><a href="#INFORMATION">Social Information</a></li> -->
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                <form id="add-department" action="#" class="add-department">
+                                                <form id="adddepartment" action="#" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
-                                                                <input name="name" type="text" class="form-control" placeholder="Name">
+                                                                <input id="name" name="name" type="text" class="form-control" placeholder="Name">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="headofdepartment" type="text" class="form-control" placeholder="Head of Department">
+                                                                <input id="hod" name="hod" type="text" class="form-control" placeholder="Head of Department">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="email" type="email" class="form-control" placeholder="Email">
+                                                                <input id="email" name="email" type="email" class="form-control" placeholder="Email">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
-                                                                <input name="phone" type="number" class="form-control" placeholder="Phone">
+                                                                <input id="phone" name="phone" type="number" class="form-control" placeholder="Phone">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="noofstudent" type="number" class="form-control" placeholder="No. of Students">
+                                                                <input id="totalstudent" name="totalstudent" type="number" class="form-control" placeholder="No. of Students">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="status" type="text" class="form-control" placeholder="Status">
+                                                                <input id="status" name="status" type="text" class="form-control" placeholder="Status">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
-                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1125,7 +1125,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                <!-- <div class="product-tab-list tab-pane fade" id="reviews">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
@@ -1184,7 +1184,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="footer-copyright-area">
             <div class="container-fluid">
                 <div class="row">
@@ -1256,6 +1256,49 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="js/tawk-chat.js"></script>
+
+    <script>
+       document.getElementById("adddepartment").addEventListener('submit', (event) => {
+           event.preventDefault()
+
+           const name = document.getElementById('name').value;
+           const hod = document.getElementById('hod').value;
+           const email = document.getElementById('email').value;
+           const phone = document.getElementById('phone').value;
+           const totalstudent = document.getElementById('totalstudent').value;
+           const status = document.getElementById('status').value;
+           
+           if(!name || !hod || !email || !phone || !totalstudent || !status){
+              alert("Please enter all the fields.")
+              return;
+           }
+
+           const data = {name , hod, email, phone, totalstudent, status}
+
+           fetch('/adddepartment', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json'
+                }
+           })
+           .then((response) => response.json())
+           .then((data) => {
+                  if(data.success){
+                    alert("Department added Successfully")
+                    window.reload;
+                  } else {
+                    alert("Failed to add library assets.")
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("An error occurred while saving library assets. Please try again.");
+            });
+           })
+           
+
+    </script>
 </body>
 
 </html>

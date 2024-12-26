@@ -81,7 +81,7 @@ const AddstudentBasicInfo = async (req,res) =>{
      
     const query = `INSERT INTO libraryassets (assetname, subject, department, type, price, year, status) VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
-    db.execute(query, [assetname, subject, department, type, price, year, status], (err, year) => {
+    db.execute(query, [assetname, subject, department, type, price, year, status], (err, result) => {
         if(err){
             console.error("Error inserting data:", err);
             return res.status(500).json({success: false, message: "Database error."})
@@ -91,8 +91,27 @@ const AddstudentBasicInfo = async (req,res) =>{
     });
  }
 
+ const adddepartment = async (req, res) => {
+    const { name, hod, email, phone, totalstudent, status } = req.body;
+    // console.log(req.body)
+
+    // Validate input fields
+    if (!name || !hod || !email || !phone || !totalstudent || !status) {
+        return res.status(400).json({ success: false, message: "All fields are required" })
+    }
+
+    const query = `INSERT INTO alldepartments (name, hod, email, phone, totalstudent, status) VALUES (?, ?, ?, ?, ?, ?)`;
+
+    db.execute(query, [name, hod, email, phone, totalstudent, status], (err, result) => {
+        if (err) {
+            console.error("Error inserting data:", err); 
+            return res.status(500).json({ success: false, message: "Database error" })
+        }
+        res.status(200).json({ success: true, message: "Department added successfully" })
+    });
+};
 
 
 
 
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets}
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, }

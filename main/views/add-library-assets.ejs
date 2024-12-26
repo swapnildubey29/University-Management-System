@@ -1289,7 +1289,6 @@
         document.getElementById("libraryassets").addEventListener('submit', (event) => {
             event.preventDefault();
     
-            // Collect form data
             const assetname = document.getElementById('assetname').value
             const subject = document.getElementById('subject').value
             const department = document.getElementById('department').value
@@ -1301,13 +1300,11 @@
             const data = { assetname, subject, department, type, price, year, status };
             // console.log(data);
     
-            // Validate fields
             if (!assetname || !subject || !department || !type || !price || !year || !status) {
                 alert("Please enter all the fields");
-                return; // Stop further execution
+                return; 
             }
     
-            // Send data via fetch
             fetch('/addlibraryassets', {
                 method: 'POST',
                 body: JSON.stringify(data),

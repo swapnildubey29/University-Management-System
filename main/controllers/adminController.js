@@ -262,7 +262,43 @@ const editcourse = async (req, res) => {
     );
 };
 
+const editlibraryasset = async (req, res) => {
+    const { assetname, subject, department, type, price, year, status } = req.body;
+
+    if (!assetname || !subject || !department || !type || !price || !year || !status) {
+        return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const query = `UPDATE libraryassets SET
+            assetname = ?,
+            subject = ?,
+            department = ?,
+            type = ?,
+            year = ?,
+            price = ?,
+            status = ?
+        WHERE assetname = ?
+    `;
+
+    db.query(
+        query,
+        [assetname, subject, department, type, year, price, status, assetname],
+        (err, result) => {
+            if (err) {
+                console.error("Error updating library assets:", err);
+                return res.status(500).json({ message: "An error occurred while updating library assets.", error: err });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: "Library asset not found or no changes made." });
+            }
+
+            return res.redirect('/edit-course');
+        }
+    );
+};
 
 
 
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo, editstudentinfo, editcourse }
+
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo, editstudentinfo, editcourse, editlibraryasset }

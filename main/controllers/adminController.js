@@ -210,10 +210,59 @@ const editstudentinfo = async (req, res) => {
         });
     });
 };
+  
+
+const editcourse = async (req, res) => {
+    const { coursename, department, startdate, duration, description, price, professor, year } = req.body;
+
+    if (!coursename || !department || !startdate || !duration || !description || !price || !professor || !year) {
+        return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const parsedYear = parseInt(year, 10);
+    if (isNaN(parsedYear)) {
+        return res.status(400).json({ message: "Invalid year value. It must be a number." });
+    }
+
+    const numericPrice = parseFloat(price.replace('$', ''));
+    if (isNaN(numericPrice)) {
+        return res.status(400).json({ message: "Invalid price value." });
+    }
+
+    const formattedStartDate = new Date(startdate).toISOString().split('T')[0];
+
+    const query = `
+        UPDATE allcourses SET
+            coursename = ?,
+            department = ?,
+            startdate = ?,
+            duration = ?,
+            description = ?,
+            price = ?,
+            professor = ?,
+            year = ?
+        WHERE coursename = ?
+    `;
+
+    db.query(
+        query,
+        [coursename, department, formattedStartDate, duration, description, numericPrice, professor, parsedYear, coursename],
+        (err, result) => {
+            if (err) {
+                console.error("Error updating course info:", err);
+                return res.status(500).json({ message: "An error occurred while updating course info.", error: err });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: "Course not found or no changes made." });
+            }
+
+            return res.redirect('/edit-course');
+        }
+    );
+};
 
 
 
 
-
-
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo, editstudentinfo }
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo, editstudentinfo, editcourse }

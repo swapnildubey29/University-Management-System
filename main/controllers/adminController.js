@@ -117,9 +117,7 @@ const AddstudentBasicInfo = async (req,res) =>{
 
 const editprofessorinfo = async (req, res) => {
     const {name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl} = req.body;
-     
-    console.log(req.body)
-  
+       
     if (!mobile) {
         return res.status(400).json({ message: "Mobile number is required to update professor info." });
     }
@@ -165,9 +163,57 @@ const editprofessorinfo = async (req, res) => {
     });
 };
 
+const editstudentinfo = async (req, res) => {
+    const {name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl} = req.body;
+       
+    if (!mobile) {
+        return res.status(400).json({ message: "Mobile number is required to update students info." });
+    }
+
+    const checkQuery = `SELECT * FROM students WHERE mobile = ?`;
+
+    db.query(checkQuery, [mobile], (err, results) => {
+        if (err) {
+            console.error("Error checking students existence:", err);
+            return res.status(500).json({ message: "An error occurred while checking students existence.", error: err });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: "No professor found with the provided mobile number." });
+        }
+
+        const updateQuery = `UPDATE students SET 
+                name = ?, 
+                address = ?, 
+                dob = ?, 
+                postcode = ?,  
+                department = ?, 
+                description = ?, 
+                gender = ?, 
+                country = ?, 
+                state = ?, 
+                city = ?, 
+                weburl = ?
+            WHERE mobile = ?
+        `;
+
+        db.query(updateQuery, [
+            name, address, dob, postcode, department,
+            description, gender, country, state, city, weburl, mobile
+        ], (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error("Error updating Student info:", updateErr);
+                return res.status(500).json({ message: "An error occurred while updating Student info.", error: updateErr });
+            }
+
+            return res.status(200).json({ message: "Student info updated successfully." });
+        });
+    });
+};
 
 
 
 
 
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo }
+
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment, editprofessorinfo, editstudentinfo }

@@ -1095,23 +1095,23 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
-                                                    <form action="#" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                                    <form action="#" class="dropzone dropzone-custom needsclick add-professors" id="editstudentinfo">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <input name="number" type="text" class="form-control" placeholder="Fly Zend" value="Fly Zend">
+                                                                    <input id="name" name="name" type="text" class="form-control" placeholder="Fly Zend" value="Fly Zend">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="E104, catn-2, UK." value="E104, catn-2, UK.">
+                                                                    <input id="address" type="text" class="form-control" placeholder="E104, catn-2, UK." value="E104, catn-2, UK.">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="12/10/1993" value="12/10/1993">
+                                                                    <input id="dob" name="dob" type="text" class="form-control" placeholder="12/10/1993" value="12/10/1993">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input type="number" class="form-control" placeholder="1213" value="1213">
+                                                                    <input id="postcode" type="number" class="form-control" placeholder="1213" value="1213">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input type="number" class="form-control" placeholder="01962067309" value="01962067309">
+                                                                    <input id="mobile" type="number" class="form-control" placeholder="01962067309" value="01962067309">
                                                                 </div>
                                                                 <div class="form-group alert-up-pd">
                                                                     <div class="dz-message needsclick download-custom">
@@ -1119,65 +1119,73 @@
                                                                         <h2 class="edudropnone">Drop image here or click to upload.</h2>
                                                                         <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
                                                                         </p>
-                                                                        <input name="imageico" class="hd-pro-img" type="text" />
+                                                                        <input id="image" name="imageico" class="hd-pro-img" type="text" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="CSE" value="CSE">
+                                                                    <input id="department" type="text" class="form-control" placeholder="CSE" value="CSE">
                                                                 </div>
                                                                 <div class="form-group edit-ta-resize res-mg-t-15">
-                                                                    <textarea name="description">Lorem ipsum dolor sit amet of, consectetur adipiscing elitable. Vestibulum tincidunt est vitae ultrices accumsan.</textarea>
+                                                                    <textarea id="description" name="description">Lorem ipsum dolor sit amet of, consectetur adipiscing elitable. Vestibulum tincidunt est vitae ultrices accumsan.</textarea>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select class="form-control">
-																		<option>Male</option>
-																		<option>Male</option>
-																		<option>Female</option>
-																	</select>
+                                                                    <select id="gender" name="gender"
+                                                                        class="form-control">
+                                                                        <option value="none" selected="" disabled="">
+                                                                            Select Gender</option>
+                                                                        <option value="Male">Male</option>
+                                                                        <option value="Female">Female</option>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select class="form-control">
-																			<option>Nepal</option>
-																			<option>India</option>
-																			<option>Pakistan</option>
-																			<option>Amerika</option>
-																			<option>China</option>
-																			<option>Dubai</option>
-																			<option>Nepal</option>
-																		</select>
+                                                                    <select id="country" name="country"
+                                                                        class="form-control">
+                                                                        <option value="none" selected="" disabled="">
+                                                                            Select country</option>
+                                                                        <option value="India">India</option>
+                                                                        <option value="Pakistan">Pakistan</option>
+                                                                        <option value="USA">USA</option>
+                                                                        <option value="China">China</option>
+                                                                        <option value="Dubai">Dubai</option>
+                                                                        <option value="Nepal">Nepal</option>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select class="form-control">
-																			<option>Maharastra</option>
-																			<option>Gujarat</option>
-																			<option>Maharastra</option>
-																			<option>Rajastan</option>
-																			<option>Maharastra</option>
-																			<option>Rajastan</option>
-																			<option>Gujarat</option>
-																		</select>
+                                                                    <select id="state" name="state"
+                                                                        class="form-control">
+                                                                        <option value="none" selected="" disabled="">
+                                                                            Select state</option>
+                                                                        <option value="Gujarat">Gujarat</option>
+                                                                        <option value="Maharastra">Maharastra</option>
+                                                                        <option value="Rajastan">Rajastan</option>
+                                                                        <option value="Madhya Pradesh">Madhya Pradesh
+                                                                        </option>
+                                                                        <option value="NEW DELHI">NEW DELHI</option>
+                                                                        <option value="CHANDIGARH">CHANDIGARH</option>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <select class="form-control">
-																			<option>Baroda</option>
-																			<option>Surat</option>
-																			<option>Baroda</option>
-																			<option>Navsari</option>
-																			<option>Baroda</option>
-																			<option>Surat</option>
-																		</select>
+                                                                    <select id="city" name="city" class="form-control">
+                                                                        <option value="none" selected="" disabled="">
+                                                                            Select city</option>
+                                                                        <option value="Surat">Surat</option>
+                                                                        <option value="Baroda">Baroda</option>
+                                                                        <option value="Navsari">Navsari</option>
+                                                                        <option value="Mumbai">Mumbai</option>
+                                                                        <option value="Jaipur">Jaipur</option>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="www.uttara.com" value="www.uttara.com">
+                                                                    <input id="weburl" type="text" class="form-control" placeholder="www.uttara.com" value="www.uttara.com">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                    <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1316,6 +1324,57 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="js/tawk-chat.js"></script>
+    <script>
+        document.getElementById("editstudentinfo").addEventListener("submit", function (event) {
+             event.preventDefault()
+
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const mobile = document.getElementById("mobile").value;
+            const dobRaw = document.getElementById("dob").value;
+            const dob = new Date(dobRaw).toISOString().split('T')[0];    
+            const postcode = document.getElementById("postcode").value;
+           // const image = document.getElementById("profimage").value;
+            const department = document.getElementById("department").value;
+            const description = document.getElementById("description").value;
+            const gender = document.getElementById("gender").value;
+            const country = document.getElementById("country").value;
+            const state = document.getElementById("state").value;
+            const city = document.getElementById("city").value;
+            const weburl = document.getElementById("weburl").value;
+
+
+            const data = { name, address, mobile, dob, postcode, image, department, description, gender, country, state, city, weburl };
+            // console.log(data)
+
+            if (!name || !address || !mobile || !dob || !postcode || !department || !gender || !country || !state || !city) {
+                alert("Please enter all the fields.");
+               return;
+            }
+
+
+            fetch('/editstudentinfo', {
+                method: 'POST',
+                body: JSON.stringify({ name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl}),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Student info updated successfully!");
+                        window.reload;
+                    } else {
+                        alert(data.message || "Failed to updated Student info.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while updating Student info. Please try again.");
+                })
+        })
+    </script>
 </body>
 
 </html>

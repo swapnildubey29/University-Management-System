@@ -52,7 +52,7 @@ const AddstudentBasicInfo = async (req,res) =>{
     }
 }
 
-const addcourses = async (req, res) => {
+ const addcourses = async (req, res) => {
     const { coursename, department, startdate, duration, description, price, professor, year } = req.body;
 
     if (!coursename || !department || !startdate || !duration || !description || !price || !professor || !year) {
@@ -72,8 +72,27 @@ const addcourses = async (req, res) => {
     });
 };
 
+ const addlibraryassets = async (req,res) => {
+      const {assetname, subject, department, type, price, year, status} = req.body;
+
+      if(!assetname || !subject || !department || !type || !price || !year){
+        return res.status(400).json({success: false, message: "All field are required"})
+    }
+     
+    const query = `INSERT INTO libraryassets (assetname, subject, department, type, price, year, status) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+    db.execute(query, [assetname, subject, department, type, price, year, status], (err, year) => {
+        if(err){
+            console.error("Error inserting data:", err);
+            return res.status(500).json({success: false, message: "Database error."})
+        }
+
+        res.json({success:true, message: "Library add successfully"})
+    });
+ }
 
 
 
 
-module.exports = {AddProfessor, AddstudentBasicInfo, addcourses}
+
+module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets}

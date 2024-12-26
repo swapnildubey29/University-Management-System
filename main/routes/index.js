@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
-const {AddProfessor, AddstudentBasicInfo, addcourses} = require('../controllers/adminController')
+const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets} = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -298,9 +298,8 @@ router.post('/AddstudentBasicInfo',AddstudentBasicInfo)
 //Router to Add Course
 router.post('/addcourses',addcourses)
 
-//Router to 
-
-
+//Router to Add Library assets
+router.post('/addlibraryassets',addlibraryassets)
 
 
 

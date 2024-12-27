@@ -3,7 +3,7 @@ const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
      adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
-      editdepartment, getAllprofessor} = require('../controllers/adminController')
+      editdepartment, getAllprofessor, getAllstudent} = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -326,6 +326,9 @@ router.post('/editdepartment',editdepartment)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // Router to get all professor
 router.get('/getAllprofessor',getAllprofessor)
+
+// Router to get all student
+router.get('/getAllstudent',getAllstudent)
 
 
 

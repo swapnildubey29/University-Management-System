@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>All Students | Kiaalap - Kiaalap Admin Template</title>
+    <title>All Students | Kiaalap Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -62,6 +62,47 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0 0 10px;
+            font-weight: 700;
+            padding-left: 20px;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 15px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            padding-left: 100px;
+        }
+        .card p {
+            margin: 2px 0;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+            width: 100%; 
+        }
+        .card p strong {
+            margin-right: 5px;
+        }
+        </style>
+
 </head>
 
 <body>
@@ -1069,7 +1110,11 @@
                 </div>
             </div>
         </div>
-        <div class="contacts-area mg-b-15">
+
+        <h1>Student's List</h1>
+        <div class="card-container" id="student-cards"></div>
+
+        <!-- <div class="contacts-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -1172,7 +1217,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="footer-copyright-area">
             <div class="container-fluid">
                 <div class="row">
@@ -1237,6 +1282,44 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="js/tawk-chat.js"></script>
+
+    <script>
+        async function fetchStudentData() {
+            try {
+                const response = await fetch('/getAllstudent'); 
+                const students = await response.json();
+                displayStudents(students);
+            } catch (error) {
+                console.error('Error fetching students data:', error);
+            }
+        }
+
+        // Function to display professor data as cards
+        function displayStudents(students) {
+            const cardContainer = document.getElementById('student-cards');
+            students.forEach(professor => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <h3>${students.name}</h3>
+            <p><strong>Address:</strong> ${students.address}</p>
+            <p><strong>Phone:</strong> ${students.mobile}</p>
+            <p><strong>Date of Birth:</strong> ${new Date(students.dob).toLocaleDateString()}</p>
+            <p><strong>Postcode:</strong> ${students.postcode}</p>
+            <p><strong>Department:</strong> ${students.department}</p>
+            <p><strong>Description:</strong> ${students.description}</p>
+            <p><strong>Gender:</strong> ${students.gender}</p>
+            <p><strong>Country:</strong> ${students.country}</p>
+            <p><strong>State:</strong> ${students.state}</p>
+            <p><strong>City:</strong> ${students.city}</p>
+            <p><strong>Website:</strong> <a href="${students.weburl}" target="_blank">${students.weburl}</a></p>
+        `;
+                cardContainer.appendChild(card);
+            });
+        }
+
+        fetchStudentData()
+    </script>
 </body>
 
 </html>

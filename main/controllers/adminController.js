@@ -345,9 +345,20 @@ const editdepartment = async (req, res) => {
     });
   }
 
+  const getAllstudent = async(req,res) => {
+    const query = `SELECT name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl FROM students`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching students:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+  }
 
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
                   editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
-                  getAllprofessor, }
+                  getAllprofessor, getAllstudent, }

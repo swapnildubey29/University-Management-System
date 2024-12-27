@@ -85,6 +85,28 @@ const login = async (req, res) => {
   });
 };
 
+//Check role
+const checkrole = async (req, res) => {
+  
+    const {email} = req.body;
+
+    const query = `SELECT role FROM users WHERE email = ?`;
+
+    db.execute(query, [email], (err, results) => {
+      if (err) {
+        console.error('Database Query Error:', err);
+        return res.status(500).json({ message: 'Database query error' });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      const userRole = results[0].role;
+      return res.status(200).json({ role: userRole });
+    });
+
+  } 
+
 //Verify JWT
 const verifyJwt = async (req, res) => {
   const { token } = req.body;
@@ -272,4 +294,5 @@ const resetpassword = async (req, res) => {
         res.status(200).json({success: true, message: "Logout successful"})
   }
 
-module.exports = {signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout};
+
+module.exports = {signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout, checkrole};

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
+const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout, checkrole} = require('../controllers/IndexController')
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
      adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
       editdepartment, getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets,
@@ -268,6 +268,9 @@ router.get('/x-editable', (req,res) => {
     res.render('x-editable')
 })
 
+router.get('/admindashboard', (req,res) => {
+    res.render('admindashboard')
+})
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -339,5 +342,8 @@ router.get('/getAllLibraryAssets',getAllLibraryAssets)
 
 // Router to get all department
 router.get('/getAllDepartments',getAllDepartments)
+
+// Router to get user role.
+router.post('/checkrole', checkrole)
 
 module.exports = router;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Professor Profile | Kiaalap - Kiaalap Admin Template</title>
+    <title>Professor Profile | Kiaalap Admin </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -75,39 +75,41 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="dashboard"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
-                <strong><a href="dashboard"><img src="img/logo/logosn.png" alt="" /></a></strong>
+                <a href="/dashboard"><img class="main-logo" src="./img/logo/logo.png" alt="" /></a>
+                <strong><a href="/dashboard"><img src="./img/logo/logosn.png" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li>
-                            <a class="has-arrow" href="dashboard">
+                        <li class="active">
+                            <div id="superadmin-content1">
+                            <a class="has-arrow" href="/dashboard">
 								   <span class="educate-icon educate-home icon-wrap"></span>
 								   <span class="mini-click-non">Education</span>
 								</a>
                             <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Dashboard v.1" href="dashboard"><span class="mini-sub-pro">Dashboard v.1</span></a></li>
+                                <li><a title="Dashboard v.1" href="/dashboard"><span class="mini-sub-pro">Dashboard v.1</span></a></li>
                                 <li><a title="Dashboard v.2" href="index-1"><span class="mini-sub-pro">Dashboard v.2</span></a></li>
-                                <li><a title="Dashboard v.3" href="index-2"><span class="mini-sub-pro">Dashboard v.3</span></a></li>
-                                <li><a title="Analytics" href="analytics"><span class="mini-sub-pro">Analytics</span></a></li>
-                                <li><a title="Widgets" href="widgets"><span class="mini-sub-pro">Widgets</span></a></li>
+                                <li><a title="Dashboard v.3" href="/index-2"><span class="mini-sub-pro">Dashboard v.3</span></a></li>
+                                <li><a title="Analytics" href="/analytics"><span class="mini-sub-pro">Analytics</span></a></li>
+                                <li><a title="Widgets" href="/widgets"><span class="mini-sub-pro">Widgets</span></a></li>
                             </ul>
+                        </div>
                         </li>
                         <li>
-                            <a title="Landing Page" href="events" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a>
+                            <a title="Landing Page" href="/events" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a>
                         </li>
-                        <li class="active">
-                            <a class="has-arrow" href="all-professors" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professors</span></a>
+                        <li>
+                            <a id="superadmin-content2" class="has-arrow" href="/all-professors" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professors</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Professors" href="all-professors"><span class="mini-sub-pro">All Professors</span></a></li>
-                                <li><a title="Add Professor" href="add-professor"><span class="mini-sub-pro">Add Professor</span></a></li>
-                                <li><a title="Edit Professor" href="edit-professor"><span class="mini-sub-pro">Edit Professor</span></a></li>
-                                <li><a title="Professor Profile" href="professor-profile"><span class="mini-sub-pro">Professor Profile</span></a></li>
+                                <li><a title="All Professors" href="/all-professors"><span class="mini-sub-pro">All Professors</span></a></li>
+                                <li><a title="Add Professor" href="/add-professor"><span class="mini-sub-pro">Add Professor</span></a></li>
+                                <li><a title="Edit Professor" href="/edit-professor"><span class="mini-sub-pro">Edit Professor</span></a></li>
+                                <li><a title="Professor Profile" href="/professor-profile"><span class="mini-sub-pro">Professor Profile</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-students" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
+                            <a id="admin-content1" class="has-arrow" href="all-students" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Students" href="all-students"><span class="mini-sub-pro">All Students</span></a></li>
                                 <li><a title="Add Students" href="add-student"><span class="mini-sub-pro">Add Student</span></a></li>
@@ -119,26 +121,26 @@
                             <a class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Courses" href="all-courses"><span class="mini-sub-pro">All Courses</span></a></li>
-                                <li><a title="Add Courses" href="add-course"><span class="mini-sub-pro">Add Course</span></a></li>
-                                <li><a title="Edit Courses" href="edit-course"><span class="mini-sub-pro">Edit Course</span></a></li>
+                                <div id="admin-content2"> <a id=""></a> <li><a title="Add Courses" href="add-course"><span class="mini-sub-pro">Add Course</span></a></li>
+                                <li><a title="Edit Courses" href="edit-course"><span class="mini-sub-pro">Edit Course</span></a></li> </div>
                                 <li><a title="Courses Profile" href="course-info"><span class="mini-sub-pro">Courses Info</span></a></li>
-                                <li><a title="course Payment" href="course-payment"><span class="mini-sub-pro">Courses Payment</span></a></li>
+                                <li><a title="Product Payment" href="course-payment"><span class="mini-sub-pro">Courses Payment</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Library</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Library" href="library-assets"><span class="mini-sub-pro">Library Assets</span></a></li>
-                                <li><a title="Add Library" href="add-library-assets"><span class="mini-sub-pro">Add Library Asset</span></a></li>
-                                <li><a title="Edit Library" href="edit-library-assets"><span class="mini-sub-pro">Edit Library Asset</span></a></li>
+                            <div id="admin-content3"> <li><a title="Add Library" href="add-library-assets"><span class="mini-sub-pro">Add Library Asset</span></a></li>
+                                <li><a title="Edit Library" href="edit-library-assets"><span class="mini-sub-pro">Edit Library Asset</span></a></li> </div> 
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Departments</span></a>
+                            <a id="admin-content5" class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Departments</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Departments List" href="departments"><span class="mini-sub-pro">Departments List</span></a></li>
+                             <div id="admin-content4"> <li><a title="Departments List" href="departments"><span class="mini-sub-pro">Departments List</span></a></li>
                                 <li><a title="Add Departments" href="add-department"><span class="mini-sub-pro">Add Departments</span></a></li>
-                                <li><a title="Edit Departments" href="edit-department"><span class="mini-sub-pro">Edit Departments</span></a></li>
+                                <li><a title="Edit Departments" href="edit-department"><span class="mini-sub-pro">Edit Departments</span></a></li> </div> 
                             </ul>
                         </li>
                         <li>
@@ -1589,6 +1591,100 @@
     <!-- tawk chat JS
 		============================================ -->
     <script src="js/tawk-chat.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', () => {
+        fetchCookie();
+    });
+
+
+    function fetchCookie() {
+        fetch("/getcookie")
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log("Cookie:", data)
+
+                const jwtToken = data.jwt;
+                if (jwtToken) {
+                    const decodedToken = jwt_decode(jwtToken)
+                    const email = decodedToken.email;
+                    // console.log("User email from JWT:", email)
+
+                    fetchRole(email);
+                } else {
+                    console.log("No JWT token found in cookies");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching cookie:", error);
+            });
+    }
+
+    function fetchRole(email) {
+        fetch('/checkrole', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const role = data.role;
+                // console.log("User role:", role)
+                RoleBasedaccess(role)
+
+            })
+            .catch((error) => {
+                console.error("Error fetching role:", error);
+            });
+    }
+
+    function RoleBasedaccess(role) {
+        if (role === 'admin') {
+            document.getElementById('superadmin-content1').style.display = 'none';
+            document.getElementById('superadmin-content2').style.display = 'none';
+        }
+        else if (role === 'user') {
+            document.getElementById('superadmin-content1').style.display = 'none';
+            document.getElementById('superadmin-content2').style.display = 'none';
+            document.getElementById('admin-content1').style.display = 'none';
+            document.getElementById('admin-content2').style.display = 'none';
+            document.getElementById('admin-content3').style.display = 'none';
+            document.getElementById('admin-content4').style.display = 'none';
+            document.getElementById('admin-content5').style.display = 'none';
+        }
+    }
+
+    //Logout     
+    document.getElementById("logout").addEventListener('click', () => {
+        logOutUser();
+    })
+
+    async function logOutUser() {
+        try {
+            const response = await fetch('/logout', {
+                method: 'POST',
+                header: {
+                    'content-type': 'application/json'
+                }
+            })
+            if (!response.ok) {
+                throw new Error(`An error occurred: ${response.statusText}`)
+            }
+            document.cookie = 'jwt=; expires=thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+            window.location.href = '/'
+        } catch (error) {
+            console.error('Error logging Out:', error);
+        }
+    }
+
+    </script>
 </body>
 
 </html>

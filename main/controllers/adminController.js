@@ -394,8 +394,46 @@ const getAllDepartments = async (req, res) => {
     });
 };
 
+const getAllusers = async (req, res) => {
+    const query = `SELECT name, email, role FROM users`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching users:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+};
+
+const updateUserRole = (req, res) => {
+    const { email, role } = req.body;
+    console.log('Updating role for:', req.body); 
+
+    if (!role) {
+        return res.status(400).json({ message: 'Role is required' });
+    }
+
+    const query = `UPDATE users SET role = ? WHERE email = ?`;
+
+    db.query(query, [role, email], (err, result) => {
+        if (err) {
+            console.error('Error updating role:', err);
+            return res.status(500).json({ message: 'Failed to update role' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'Role updated successfully' });
+    });
+};
+
+
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
                   editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
-                  getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets, getAllDepartments,}
+                  getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets, getAllDepartments,
+                  getAllusers, updateUserRole, }

@@ -4,7 +4,7 @@ const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout, 
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
      adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
       editdepartment, getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets,
-      getAllDepartments, } = require('../controllers/adminController')
+      getAllDepartments, getAllusers, updateUserRole, } = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -268,8 +268,8 @@ router.get('/x-editable', (req,res) => {
     res.render('x-editable')
 })
 
-router.get('/admindashboard', (req,res) => {
-    res.render('admindashboard')
+router.get('/alluser', (req,res) => {
+    res.render('alluser')
 })
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -325,6 +325,11 @@ router.post('/editlibraryasset',editlibraryasset)
 //Router to edit department
 router.post('/editdepartment',editdepartment)
 
+// Router to get user role.
+router.post('/checkrole', checkrole)
+
+// Router to update user role.
+router.post('/updateUserRole', updateUserRole)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -343,7 +348,8 @@ router.get('/getAllLibraryAssets',getAllLibraryAssets)
 // Router to get all department
 router.get('/getAllDepartments',getAllDepartments)
 
-// Router to get user role.
-router.post('/checkrole', checkrole)
+// Router to get all users
+router.get('/getAllusers',getAllusers)
+
 
 module.exports = router;

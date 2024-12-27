@@ -358,8 +358,21 @@ const editdepartment = async (req, res) => {
     });
   }
 
+  const getAllCourses = async (req, res) => {
+    const query = `SELECT coursename, department, startdate, duration, description, price, professor, year FROM allcourses`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching all courses:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+};
+
+
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
                   editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
-                  getAllprofessor, getAllstudent, }
+                  getAllprofessor, getAllstudent, getAllCourses, }

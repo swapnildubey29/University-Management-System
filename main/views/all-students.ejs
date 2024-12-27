@@ -1294,29 +1294,29 @@
             }
         }
 
-        // Function to display professor data as cards
         function displayStudents(students) {
-            const cardContainer = document.getElementById('student-cards');
-            students.forEach(professor => {
-                const card = document.createElement('div');
-                card.classList.add('card');
-                card.innerHTML = `
-                    <h3>${students.name}</h3>
-            <p><strong>Address:</strong> ${students.address}</p>
-            <p><strong>Phone:</strong> ${students.mobile}</p>
-            <p><strong>Date of Birth:</strong> ${new Date(students.dob).toLocaleDateString()}</p>
-            <p><strong>Postcode:</strong> ${students.postcode}</p>
-            <p><strong>Department:</strong> ${students.department}</p>
-            <p><strong>Description:</strong> ${students.description}</p>
-            <p><strong>Gender:</strong> ${students.gender}</p>
-            <p><strong>Country:</strong> ${students.country}</p>
-            <p><strong>State:</strong> ${students.state}</p>
-            <p><strong>City:</strong> ${students.city}</p>
-            <p><strong>Website:</strong> <a href="${students.weburl}" target="_blank">${students.weburl}</a></p>
+    const cardContainer = document.getElementById('student-cards');
+    cardContainer.innerHTML = ''; // Clear any existing cards
+    students.forEach(student => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <h3>${student.name}</h3>
+            <p><strong>Address:</strong> ${student.address}</p>
+            <p><strong>Phone:</strong> ${student.mobile}</p>
+            <p><strong>Date of Birth:</strong> ${new Date(student.dob).toLocaleDateString()}</p>
+            <p><strong>Postcode:</strong> ${student.postcode}</p>
+            <p><strong>Department:</strong> ${student.department}</p>
+            <p><strong>Description:</strong> ${student.description || 'N/A'}</p>
+            <p><strong>Gender:</strong> ${student.gender}</p>
+            <p><strong>Country:</strong> ${student.country}</p>
+            <p><strong>State:</strong> ${student.state}</p>
+            <p><strong>City:</strong> ${student.city}</p>
+            <p><strong>Website:</strong> <a href="${student.weburl}" target="_blank">${student.weburl}</a></p>
         `;
-                cardContainer.appendChild(card);
-            });
-        }
+        cardContainer.appendChild(card);
+    });
+}
 
         fetchStudentData()
     </script>

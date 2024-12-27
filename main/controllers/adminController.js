@@ -353,6 +353,7 @@ const editdepartment = async (req, res) => {
             res.status(500).send({ error: 'Database query failed' });
         } else {
             res.json(results);
+            // console.log(results)
         }
     });
   }

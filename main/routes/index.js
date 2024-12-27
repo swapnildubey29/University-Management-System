@@ -3,7 +3,8 @@ const router = express.Router()
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout} = require('../controllers/IndexController')
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
      adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
-      editdepartment, getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets} = require('../controllers/adminController')
+      editdepartment, getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets,
+      getAllDepartments, } = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -337,6 +338,6 @@ router.get('/getAllCourses',getAllCourses)
 router.get('/getAllLibraryAssets',getAllLibraryAssets)
 
 // Router to get all department
-
+router.get('/getAllDepartments',getAllDepartments)
 
 module.exports = router;

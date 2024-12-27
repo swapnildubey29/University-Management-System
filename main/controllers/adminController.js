@@ -382,10 +382,20 @@ const getAllLibraryAssets = async (req, res) => {
     });
 };
 
-
+const getAllDepartments = async (req, res) => {
+    const query = `SELECT name, hod, email, phone, totalstudent, status FROM alldepartments`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching departments:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+};
 
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
                   editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
-                  getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets, }
+                  getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets, getAllDepartments,}

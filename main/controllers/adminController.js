@@ -370,9 +370,22 @@ const editdepartment = async (req, res) => {
     });
 };
 
+const getAllLibraryAssets = async (req, res) => {
+    const query = `SELECT assetname, subject, department, type, price, year, status FROM libraryassets`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching library assets:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+};
+
+
 
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
                   editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
-                  getAllprofessor, getAllstudent, getAllCourses, }
+                  getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets, }

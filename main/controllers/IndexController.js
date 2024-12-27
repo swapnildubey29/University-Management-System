@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 
 //Signup
 const signup = async (req, res) => {
-  const { name, email, password, confirmpassword } = req.body;
+  const { name, email, password, confirmpassword, role} = req.body;
 
   if (password !== confirmpassword) {
     return res.status(400).send("Passwords do not match");
@@ -25,8 +25,8 @@ const signup = async (req, res) => {
 
       const hashedPassword = await bcrypt.hash(password, 10)
 
-      const insertQuery = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-      db.query(insertQuery, [name, email, hashedPassword], (err, result) => {
+      const insertQuery = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+      db.query(insertQuery, [name, email, hashedPassword, role], (err, result) => {
         if (err) {
           console.error("Error inserting data:", err);
           return res.status(500).send("Error saving data to database")

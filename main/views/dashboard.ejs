@@ -103,7 +103,7 @@
                         <li>
                             <a id="superadmin-content2" class="has-arrow" href="/all-professors" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professors</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Professors" href="/all-professors"><span class="mini-sub-pro">All Professors</span></a></li>
+                                <li><a  title="All Professors" href="/all-professors"><span class="mini-sub-pro">All Professors</span></a></li>
                                 <li><a title="Add Professor" href="/add-professor"><span class="mini-sub-pro">Add Professor</span></a></li>
                                 <li><a title="Edit Professor" href="/edit-professor"><span class="mini-sub-pro">Edit Professor</span></a></li>
                                 <li><a title="Professor Profile" href="/professor-profile"><span class="mini-sub-pro">Professor Profile</span></a></li>
@@ -112,9 +112,9 @@
                         <li>
                             <a id="admin-content1" class="has-arrow" href="all-students" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Students" href="all-students"><span class="mini-sub-pro">All Students</span></a></li>
-                                <li><a title="Add Students" href="add-student"><span class="mini-sub-pro">Add Student</span></a></li>
-                                <li><a title="Edit Students" href="edit-student"><span class="mini-sub-pro">Edit Student</span></a></li>
+                                <li><a id="all-students" title="All Students" href="all-students"><span class="mini-sub-pro">All Students</span></a></li>
+                                <li><a id="add-students" title="Add Students" href="add-student"><span class="mini-sub-pro">Add Student</span></a></li>
+                                <li><a id="edit-students" title="Edit Students" href="edit-student"><span class="mini-sub-pro">Edit Student</span></a></li>
                                 <li><a title="Students Profile" href="student-profile"><span class="mini-sub-pro">Student Profile</span></a></li>
                             </ul>
                         </li>
@@ -122,8 +122,8 @@
                             <a class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Courses" href="all-courses"><span class="mini-sub-pro">All Courses</span></a></li>
-                                <div id="admin-content2"> <a id=""></a> <li><a title="Add Courses" href="add-course"><span class="mini-sub-pro">Add Course</span></a></li>
-                                <li><a title="Edit Courses" href="edit-course"><span class="mini-sub-pro">Edit Course</span></a></li> </div>
+                                <div id="admin-content2"><li><a id="add-courses" title="Add Courses" href="add-course"><span class="mini-sub-pro">Add Course</span></a></li>
+                                <li><a id="edit-courses" title="Edit Courses" href="edit-course"><span class="mini-sub-pro">Edit Course</span></a></li> </div>
                                 <li><a title="Courses Profile" href="course-info"><span class="mini-sub-pro">Courses Info</span></a></li>
                                 <li><a title="Product Payment" href="course-payment"><span class="mini-sub-pro">Courses Payment</span></a></li>
                             </ul>
@@ -132,16 +132,16 @@
                             <a class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Library</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Library" href="library-assets"><span class="mini-sub-pro">Library Assets</span></a></li>
-                            <div id="admin-content3"> <li><a title="Add Library" href="add-library-assets"><span class="mini-sub-pro">Add Library Asset</span></a></li>
-                                <li><a title="Edit Library" href="edit-library-assets"><span class="mini-sub-pro">Edit Library Asset</span></a></li> </div> 
+                                <div id="admin-content3"> <li><a id="add-library" title="Add Library" href="add-library-assets"><span class="mini-sub-pro">Add Library Asset</span></a></li>
+                                <li><a id="edit-library" title="Edit Library" href="edit-library-assets"><span class="mini-sub-pro">Edit Library Asset</span></a></li> </div>
                             </ul>
                         </li>
                         <li>
                             <a id="admin-content5" class="has-arrow" href="all-courses" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Departments</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                              <div id="admin-content4"> <li><a title="Departments List" href="departments"><span class="mini-sub-pro">Departments List</span></a></li>
-                                <li><a title="Add Departments" href="add-department"><span class="mini-sub-pro">Add Departments</span></a></li>
-                                <li><a title="Edit Departments" href="edit-department"><span class="mini-sub-pro">Edit Departments</span></a></li> </div> 
+                                <li><a id="add-department" title="Add Departments" href="add-department"><span class="mini-sub-pro">Add Departments</span></a></li>
+                                <li><a id="edit-department" title="Edit Departments" href="edit-department"><span class="mini-sub-pro">Edit Departments</span></a></li> </div> 
                             </ul>
                         </li>
                         <li>
@@ -1686,31 +1686,31 @@
     }
 
     function fetchRole(email) {
-        fetch('/checkrole', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
+    fetch('/checkrole', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const role = data.role;
+            const access = data.access;
+            // console.log("User role:", role);
+            // console.log("User access:", access);
+            RoleBasedaccess(role, access); 
         })
-            .then((response) => response.json())
-            .then((data) => {
-                const role = data.role;
-                // console.log("User role:", role)
-                RoleBasedaccess(role)
+        .catch((error) => {
+            console.error("Error fetching role:", error);
+        });
+}
 
-            })
-            .catch((error) => {
-                console.error("Error fetching role:", error);
-            });
-    }
+   
 
-    function RoleBasedaccess(role) {
-        if (role === 'admin') {
-            document.getElementById('superadmin-content1').style.display = 'none';
-            document.getElementById('superadmin-content2').style.display = 'none';
-        }
-        else if (role === 'user') {
+
+    function RoleBasedaccess(role, access) {
+        if (role === 'user') {
             document.getElementById('superadmin-content1').style.display = 'none';
             document.getElementById('superadmin-content2').style.display = 'none';
             document.getElementById('admin-content1').style.display = 'none';
@@ -1719,6 +1719,50 @@
             document.getElementById('admin-content4').style.display = 'none';
             document.getElementById('admin-content5').style.display = 'none';
         }
+        else if (role === 'admin') {
+            console.log(access)
+            document.getElementById('superadmin-content1').style.display = 'none';
+            document.getElementById('superadmin-content2').style.display = 'none';
+            document.getElementById('all-students').style.display = 'none';
+            document.getElementById('add-students').style.display = 'none';
+            document.getElementById('edit-students').style.display = 'none';
+            document.getElementById('add-courses').style.display = 'none';
+            document.getElementById('edit-courses').style.display = 'none';
+            document.getElementById('add-library').style.display = 'none';
+            document.getElementById('edit-library').style.display = 'none';
+            document.getElementById('add-department').style.display = 'none';
+            document.getElementById('edit-department').style.display = 'none';
+        
+            console.log(access)
+
+            if (access.includes('All Student')) {
+                document.getElementById('all-students').style.display = 'block';
+            }
+            if (access.includes('Add student')) {
+                document.getElementById('add-students').style.display = 'block';
+            }
+            if (access.includes('Edit student')) {
+                document.getElementById('edit-students').style.display = 'block';
+            }
+            if (access.includes('Add courses')) {
+                document.getElementById('add-courses').style.display = 'block';
+            }
+            if (access.includes('Edit courses')) {
+                document.getElementById('edit-courses').style.display = 'block';
+            }
+            if (access.includes('Add library')) {
+                document.getElementById('add-library').style.display = 'block';
+            }
+            if (access.includes('Edit library')) {
+                document.getElementById('edit-library').style.display = 'block';
+            }
+            if (access.includes('Add department')) {
+                document.getElementById('add-department').style.display = 'block';
+            }
+            if (access.includes('Edit department')) {
+                document.getElementById('edit-department').style.display = 'block';
+            }
+       }
     }
 
     //Logout     

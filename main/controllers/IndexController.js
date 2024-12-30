@@ -87,25 +87,25 @@ const login = async (req, res) => {
 
 //Check role
 const checkrole = async (req, res) => {
-  
-    const {email} = req.body;
+  const { email } = req.body;
 
-    const query = `SELECT role FROM users WHERE email = ?`;
+  const query = `SELECT role, access FROM users WHERE email = ?`;
 
-    db.execute(query, [email], (err, results) => {
+  db.execute(query, [email], (err, results) => {
       if (err) {
-        console.error('Database Query Error:', err);
-        return res.status(500).json({ message: 'Database query error' });
+          console.error('Database Query Error:', err);
+          return res.status(500).json({ message: 'Database query error' });
       }
       if (results.length === 0) {
-        return res.status(404).json({ message: 'User not found' });
+          return res.status(404).json({ message: 'User not found' });
       }
 
       const userRole = results[0].role;
-      return res.status(200).json({ role: userRole });
-    });
+      const userAccess = results[0].access;
+      return res.status(200).json({ role: userRole, access: userAccess });
+  });
+};
 
-  } 
 
 //Verify JWT
 const verifyJwt = async (req, res) => {

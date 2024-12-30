@@ -1226,7 +1226,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
 
-    <script>
+    <script>  
          async function fetchUsers() {
         try {
             const response = await fetch('/getAlladmin');
@@ -1251,8 +1251,6 @@
             <div class="dropdown">
                 <button class="dropdown-toggle">Select Roles</button>
                 <ul class="dropdown-menu">
-                    <li><label><input type="checkbox" class="role-checkbox" value="Education Analytics" data-email="${user.email}" ${userAccess.includes('Education Analytics') ? 'checked' : ''}> Education Analytics</label></li>
-                    <li><label><input type="checkbox" class="role-checkbox" value="All Professor" data-email="${user.email}" ${userAccess.includes('All Professor') ? 'checked' : ''}> All Professor</label></li>
                     <li><label><input type="checkbox" class="role-checkbox" value="All Student" data-email="${user.email}" ${userAccess.includes('All Student') ? 'checked' : ''}> All Student</label></li>
                     <li><label><input type="checkbox" class="role-checkbox" value="Add student" data-email="${user.email}" ${userAccess.includes('Add student') ? 'checked' : ''}> Add Student</label></li>
                     <li><label><input type="checkbox" class="role-checkbox" value="Edit student" data-email="${user.email}" ${userAccess.includes('Edit student') ? 'checked' : ''}> Edit Student</label></li>

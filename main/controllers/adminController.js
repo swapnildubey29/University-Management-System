@@ -1,32 +1,40 @@
 const db = require('../config/db')
 
-// Add details.
 
+// Add details.
 const AddProfessor = async (req, res) => {
     const { name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl } = req.body;
+    const image = req.file ? req.file.filename : null;
+
+    console.log(image)
 
     try {
         const insertquery = `
             INSERT INTO professors 
-            (name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            (name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl, image) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
-        const values = [name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl]
+        // Constructing the image URL based on the uploaded file
+        const imageUrl = image ? `http://localhost:3000/uploads/${image}` : null; 
+        console.log(imageUrl)
+
+        const values = [name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl, imageUrl];
 
         db.query(insertquery, values, (error, result) => {
             if (error) {
                 console.error("Error inserting data:", error);
-                return res.status(500).send("Error sending data to database.")
+                return res.status(500).send("Error sending data to database.");
             }
 
-            res.status(200).json({ success: true, message: "Professor added Successfully" })
+            res.status(200).json({ success: true, message: "Professor added Successfully" });
         });
     } catch (error) {
-        console.error("Error saving professor data", error)
+        console.error("Error saving professor data", error);
         res.status(500).json({ success: false, message: "An internal server error occurred" });
     }
 };
+
 
 const AddstudentBasicInfo = async (req,res) =>{
     const { name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl } = req.body;
@@ -71,8 +79,8 @@ const AddstudentBasicInfo = async (req,res) =>{
         }
 
         res.json({ success: true, message: "Course added successfully." });
-    });
-};
+    })
+}
 
  const addlibraryassets = async (req,res) => {
       const {assetname, subject, department, type, price, year, status} = req.body;
@@ -90,7 +98,7 @@ const AddstudentBasicInfo = async (req,res) =>{
         }
 
         res.json({success:true, message: "Library add successfully"})
-    });
+    })
  }
 
  const adddepartment = async (req, res) => {
@@ -109,12 +117,11 @@ const AddstudentBasicInfo = async (req,res) =>{
             return res.status(500).json({ success: false, message: "Database error" })
         }
         res.status(200).json({ success: true, message: "Department added successfully" })
-    });
-};
+    })
+}
 
 
 // Edit Details
-
 const editprofessorinfo = async (req, res) => {
     const {name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl} = req.body;
        
@@ -159,9 +166,9 @@ const editprofessorinfo = async (req, res) => {
             }
 
             return res.status(200).json({ message: "Professor info updated successfully." });
-        });
-    });
-};
+        })
+    })
+}
 
 const editstudentinfo = async (req, res) => {
     const {name, address, mobile, dob, postcode, department, description, gender, country, state, city, weburl} = req.body;

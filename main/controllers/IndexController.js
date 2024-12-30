@@ -103,8 +103,8 @@ const checkrole = async (req, res) => {
       const userRole = results[0].role;
       const userAccess = results[0].access;
       return res.status(200).json({ role: userRole, access: userAccess });
-  });
-};
+  })
+}
 
 
 //Verify JWT
@@ -152,14 +152,14 @@ const verifyJwt = async (req, res) => {
     return res.status(401).json({
       success: false,
       error: error.message,
-    });
+    })
   }
-};
+}
 
 //Generate OTP
 const generateOtp = () => {
   return Math.floor(100000 + Math.random() * 900000).toString()
-};
+}
 
 //Forget Password
 const sendOtp = async (req, res) => {
@@ -243,8 +243,8 @@ const verifyingOtp = async (req, res) => {
     } else {
       return res.status(400).json({ message: "Invalid OTP" })
     }
-  });
-};
+  })
+}
 
 //Reset Password
 const resetpassword = async (req, res) => {
@@ -263,8 +263,7 @@ const resetpassword = async (req, res) => {
       if (err) {
         console.error("Database error while updating password:", err)
         return res.status(500)
-          .json({
-            success: false,
+          .json({success: false,
             message: "Failed to update password",
             error: err,
           });

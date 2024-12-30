@@ -1,5 +1,8 @@
 const express = require('express')
+const multer = require('multer')
 const router = express.Router()
+const uuidv4 = require('uuid').v4;
+const path = require('path')
 const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout, checkrole} = require('../controllers/IndexController')
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
      adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
@@ -337,6 +340,29 @@ router.post('/updateUserRole', updateUserRole)
 
 // Router to update admin access.
 router.post('/updateadminaccess', updateadminaccess)
+
+// Storage configuration for Multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadPath = path.join(__dirname, 'uploads');
+        cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${uuidv4()}-${file.originalname}`);
+    },
+});
+
+// Multer instance
+const upload = multer({ storage });
+
+// Serve uploaded files statically
+router.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Endpoint for adding a professor
+router.post('/AddProfessor', upload.single('image'), AddProfessor);
+
+
+
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // Router to get all professor

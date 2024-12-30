@@ -1,11 +1,11 @@
 const db = require("../config/db")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
-const bcrypt = require("bcrypt")
+const crypto = require('crypto');
 
 //Signup
 const signup = async (req, res) => {
-  const { name, email, password, confirmpassword, role} = req.body;
+  const { name, email, password, confirmpassword, role } = req.body;
 
   if (password !== confirmpassword) {
     return res.status(400).send("Passwords do not match");
@@ -15,21 +15,28 @@ const signup = async (req, res) => {
     const checkQuery = "SELECT * FROM users WHERE email = ?";
     db.query(checkQuery, [email], async (err, results) => {
       if (err) {
-        console.error("Error checking user existence:", err)
-        return res.status(500).send("An internal server error occurred")
+        console.error("Error checking user existence:", err);
+        return res.status(500).send("An internal server error occurred");
       }
 
       if (results.length > 0) {
-        return res.status(400).send("User already exists")
+        return res.status(400).send("User already exists");
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10)
+      // Generate a salt
+      const salt = crypto.randomBytes(16).toString('hex');
+      
+      // Hash the password with the salt using SHA-256
+      const hashedPassword = crypto
+        .createHmac('sha256', salt)
+        .update(password)
+        .digest('hex');
 
-      const insertQuery = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
-      db.query(insertQuery, [name, email, hashedPassword, role], (err, result) => {
+      const insertQuery = "INSERT INTO users (name, email, password, salt, role) VALUES (?, ?, ?, ?, ?)";
+      db.query(insertQuery, [name, email, hashedPassword, salt, role], (err, result) => {
         if (err) {
           console.error("Error inserting data:", err);
-          return res.status(500).send("Error saving data to database")
+          return res.status(500).send("Error saving data to database");
         }
 
         // Generate JWT
@@ -37,59 +44,67 @@ const signup = async (req, res) => {
           expiresIn: "10d",
         });
 
-        res.cookie("jwt", token, { maxAge: 10 * 24 * 60 * 1000, httpOnly: true })
+        res.cookie("jwt", token, { maxAge: 10 * 24 * 60 * 1000, httpOnly: true });
 
-        res.redirect("/dashboard")
+        res.redirect("/dashboard");
       });
     });
   } catch (error) {
-    console.error("Error during signup:", error)
-    res.status(500).send("An internal server error occurred")
+    console.error("Error during signup:", error);
+    res.status(500).send("An internal server error occurred");
   }
 };
-
 
 //Login
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  const query = "SELECT * FROM users WHERE email = ?";
+  try {
+    const checkQuery = "SELECT * FROM users WHERE email = ?";
+    db.query(checkQuery, [email], async (err, results) => {
+      if (err) {
+        console.error("Error checking user:", err);
+        return res.status(500).send("An internal server error occurred");
+      }
 
-  db.query(query, [email], async (err, result) => {
-    if (err) {
-      console.error("Error querying the database:", err)
-      return res.status(500).json({ message: "Database error" })
-    }
+      if (results.length === 0) {
+        return res.status(400).send("User not found");
+      }
 
-    if (result.length === 0) {
-      return res.redirect("/signup")
-    }
+      const user = results[0];
+      const { password: storedPassword, salt } = user;
 
-    const user = result[0]
+      // Hash the provided password with the stored salt
+      const hashedPassword = crypto
+        .createHmac('sha256', salt)
+        .update(password)
+        .digest('hex');
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      // Compare the hashes
+      if (hashedPassword !== storedPassword) {
+        return res.status(400).send("Invalid credentials");
+      }
 
-    if (!isPasswordCorrect) {
-      return res.redirect("/forgotpassword")
-    }
+      // Generate JWT
+      const token = jwt.sign({ email }, process.env.SECRET_KEY, {
+        expiresIn: "10d",
+      });
 
-    // Generate JWT
-    const token = jwt.sign({ email }, process.env.SECRET_KEY, {
-      expiresIn: "10d",
+      res.cookie("jwt", token, { maxAge: 10 * 24 * 60 * 1000, httpOnly: true });
+      res.redirect("/dashboard");
     });
-
-    res.cookie("jwt", token, { maxAge: 10 * 24 * 60 * 1000, httpOnly: true })
-
-    res.redirect("/dashboard")
-    // console.log(token);
-  });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).send("An internal server error occurred");
+  }
 };
+
 
 //Check role
 const checkrole = async (req, res) => {
   const { email } = req.body;
 
-  const query = `SELECT role, access FROM users WHERE email = ?`;
+  const query = `SELECT name, role, access FROM users WHERE email = ?`;
 
   db.execute(query, [email], (err, results) => {
       if (err) {
@@ -100,9 +115,10 @@ const checkrole = async (req, res) => {
           return res.status(404).json({ message: 'User not found' });
       }
 
+      const userName = results[0].name
       const userRole = results[0].role;
       const userAccess = results[0].access;
-      return res.status(200).json({ role: userRole, access: userAccess });
+      return res.status(200).json({name: userName, role: userRole, access: userAccess });
   })
 }
 
@@ -249,41 +265,53 @@ const verifyingOtp = async (req, res) => {
 //Reset Password
 const resetpassword = async (req, res) => {
   const { newpassword, email } = req.body;
-  // console.log(req.body)
 
   if (!newpassword || !email) {
-    return res.status(400).json({ success: false, message: "Email and password are required." })
+    return res.status(400).json({ success: false, message: "Email and password are required." });
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(newpassword, 10)
+    const salt = crypto.randomBytes(16).toString('hex');  // 16 bytes salt
 
-    const query = `UPDATE users SET password = ? WHERE email = ?`;
-    db.query(query, [hashedPassword, email], (err, results) => {
+    // Hash the new password with the salt
+    const hashedPassword = crypto
+      .createHmac('sha256', salt) 
+      .update(newpassword)
+      .digest('hex');
+
+    const query = `UPDATE users SET password = ?, salt = ? WHERE email = ?`;
+    db.query(query, [hashedPassword, salt, email], (err, results) => {
       if (err) {
-        console.error("Database error while updating password:", err)
-        return res.status(500)
-          .json({success: false,
-            message: "Failed to update password",
-            error: err,
-          });
+        console.error("Database error while updating password:", err);
+        return res.status(500).json({
+          success: false,
+          message: "Failed to update password",
+          error: err,
+        });
       }
 
       if (results.affectedRows === 0) {
         return res.status(404).json({ success: false, message: "User not found." });
       }
 
-      res.json({success: true, message: "Password updated successfully.",redirect: "/dashboard",})
-
+      // Generate JWT token
       const token = jwt.sign({ email }, process.env.SECRET_KEY, {
         expiresIn: "10d",
-      })
+      });
 
+      // Send cookie and response in one go
       res.cookie("jwt", token, { maxAge: 10 * 24 * 60 * 1000, httpOnly: true });
-    })
+      
+      // Send final response only after setting the cookie
+      res.json({
+        success: true,
+        message: "Password updated successfully.",
+        redirect: "/dashboard",
+      });
+    });
   } catch (error) {
-    console.error("Error hashing password:", error)
-    res.status(500).json({ success: false, message: "An internal server error occurred." })
+    console.error("Error hashing password:", error);
+    res.status(500).json({ success: false, message: "An internal server error occurred." });
   }
 };
 

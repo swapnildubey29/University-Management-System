@@ -4,7 +4,7 @@ const { signup, login, verifyJwt, sendOtp, verifyingOtp, resetpassword, logout, 
 const {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets,
      adddepartment, editprofessorinfo, editstudentinfo, editcourse,editlibraryasset,
       editdepartment, getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets,
-      getAllDepartments, getAllusers, updateUserRole, } = require('../controllers/adminController')
+      getAllDepartments, getAllusers, updateUserRole, getAlladmin, updateadminaccess} = require('../controllers/adminController')
 
 // Rendering Page
 router.get('/', (req,res) => {
@@ -272,6 +272,10 @@ router.get('/alluser', (req,res) => {
     res.render('alluser')
 })
 
+router.get('/adminaccess', (req,res) => {
+    res.render('adminaccess')
+})
+
 // -----------------------------------------------------------------------------------------------------------------------------------------------
 
 // Route to Create new user.
@@ -331,6 +335,8 @@ router.post('/checkrole', checkrole)
 // Router to update user role.
 router.post('/updateUserRole', updateUserRole)
 
+// Router to update admin access.
+router.post('/updateadminaccess', updateadminaccess)
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // Router to get all professor
@@ -351,5 +357,7 @@ router.get('/getAllDepartments',getAllDepartments)
 // Router to get all users
 router.get('/getAllusers',getAllusers)
 
+// Router to get all admin
+router.get('/getAlladmin',getAlladmin)
 
 module.exports = router;

@@ -430,10 +430,41 @@ const updateUserRole = (req, res) => {
     });
 };
 
+const getAlladmin = async (req, res) => {
+    const query = `SELECT name, email, access FROM users WHERE role IN ('admin') AND role != 'superadmin'`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching users:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.json(results);
+        }
+    });
+};
+
+
+const updateadminaccess = (req, res) => {
+    const { email, access } = req.body;
+    // console.log(req.body);
+
+    if (!email || !access || !Array.isArray(access)) {
+        return res.status(400).send('Invalid data');
+    }
+
+    const accessString = access.join('\n'); // Convert array to multiline string
+    db.query('UPDATE users SET access = ? WHERE email = ?', [accessString, email], (err, results) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).send('Failed to update access');
+        }
+        res.status(200).send('Access updated successfully');
+    });
+};
+
 
 
 
 module.exports = {AddProfessor, AddstudentBasicInfo, addcourses, addlibraryassets, adddepartment,
                   editprofessorinfo, editstudentinfo, editcourse, editlibraryasset, editdepartment,
                   getAllprofessor, getAllstudent, getAllCourses, getAllLibraryAssets, getAllDepartments,
-                  getAllusers, updateUserRole, }
+                  getAllusers, updateUserRole, getAlladmin, updateadminaccess}

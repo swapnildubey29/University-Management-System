@@ -302,12 +302,7 @@ const resetpassword = async (req, res) => {
       // Send cookie and response in one go
       res.cookie("jwt", token, { maxAge: 10 * 24 * 60 * 1000, httpOnly: true });
       
-      // Send final response only after setting the cookie
-      res.json({
-        success: true,
-        message: "Password updated successfully.",
-        redirect: "/dashboard",
-      });
+      res.json({success: true, message: "Password updated successfully.",redirect: "/dashboard",});
     });
   } catch (error) {
     console.error("Error hashing password:", error);

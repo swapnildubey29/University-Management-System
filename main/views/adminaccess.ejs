@@ -84,19 +84,18 @@
             text-align: left;
         }
     
-        .dropdown {
-            position: relative;
-            display: inline-block;
+        .dropdown2 {
+            position: absolute;
+            display: block;
             height: 100%;
         }
     
-        .dropdown-menu {
+        .dropdown-menu2 {
             display: none;
             position: absolute;
             background-color: #ffffff;
             border: 1px solid #ccc;
             padding: 10px;
-            list-style: none;
             margin: 0;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
@@ -104,15 +103,7 @@
             overflow-y: auto;
         }
     
-        .dropdown-menu li {
-            margin-bottom: 5px;
-        }
-    
-        .dropdown-menu li:last-child {
-            margin-bottom: 0;
-        }
-    
-        .dropdown:hover .dropdown-menu {
+        .dropdown2:hover .dropdown-menu2 {
             display: block;
         }
 
@@ -1140,6 +1131,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Access</th>
+                                        <th>Submit</th>
                                     </tr>
                                 </table>
                             </div>
@@ -1249,9 +1241,9 @@
         <td>${user.name}</td>
         <td>${user.email}</td>
         <td>
-            <div class="dropdown">
+            <div class="dropdown2">
                 <button class="dropdown-toggle">Select Roles</button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu2">
                     <li><label><input type="checkbox" class="role-checkbox" value="All Student" data-email="${user.email}" ${userAccess.includes('All Student') ? 'checked' : ''}> All Student</label></li>
                     <li><label><input type="checkbox" class="role-checkbox" value="Add student" data-email="${user.email}" ${userAccess.includes('Add student') ? 'checked' : ''}> Add Student</label></li>
                     <li><label><input type="checkbox" class="role-checkbox" value="Edit student" data-email="${user.email}" ${userAccess.includes('Edit student') ? 'checked' : ''}> Edit Student</label></li>

@@ -1192,7 +1192,10 @@
             <td>${user.name}</td>
             <td>${user.email}</td>
             <td>
-                <input type="text" value="${user.role}" data-user-id="${user.id}" data-user-email="${user.email}" class="role-input" />
+               <select data-user-id="${user.id}" data-user-email="${user.email}" class="role-select">
+               <option value="user" ${user.role === 'user' ? 'selected' : ''}>User</option>
+               <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                </select>
             </td>
             <td>
                 <button class="save-btn" data-user-id="${user.id}" data-user-email="${user.email}">Save</button>
@@ -1205,16 +1208,16 @@
 }
 
 function addSaveButtonListeners() {
-    const saveButtons = document.querySelectorAll('.save-btn')
+    const saveButtons = document.querySelectorAll('.save-btn');
     saveButtons.forEach((button) => {
         button.addEventListener('click', async (event) => {
-            const userId = event.target.getAttribute('data-user-id')
-            const userEmail = event.target.getAttribute('data-user-email')
-            const roleInput = document.querySelector(`.role-input[data-user-id="${userId}"]`)
-            const updatedRole = roleInput.value;
+            const userId = event.target.getAttribute('data-user-id');
+            const userEmail = event.target.getAttribute('data-user-email');
+            const roleSelect = document.querySelector(`.role-select[data-user-id="${userId}"]`);
+            const updatedRole = roleSelect.value;
 
-            // console.log("Updated Role:", updatedRole)
-            // console.log("User Email:", userEmail)
+            // console.log("Updated Role:", updatedRole);
+            // console.log("User Email:", userEmail);
 
             try {
                 const response = await fetch(`/updateUserRole`, {
@@ -1227,7 +1230,7 @@ function addSaveButtonListeners() {
 
                 if (response.ok) {
                     alert('Role updated successfully!');
-                    location.reload()
+                    location.reload();
                 } else {
                     alert('Failed to update role.');
                 }

@@ -395,7 +395,7 @@ const getAllDepartments = async (req, res) => {
 };
 
 const getAllusers = async (req, res) => {
-    const query = `SELECT name, email, role FROM users`;
+    const query = `SELECT name, email, role FROM users WHERE role IN ('user', 'admin') AND role != 'superadmin'`;
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error fetching users:', err);
@@ -408,7 +408,7 @@ const getAllusers = async (req, res) => {
 
 const updateUserRole = (req, res) => {
     const { email, role } = req.body;
-    console.log('Updating role for:', req.body); 
+    // console.log('Updating role for:', req.body); 
 
     if (!role) {
         return res.status(400).json({ message: 'Role is required' });

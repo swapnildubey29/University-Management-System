@@ -238,7 +238,7 @@ const verifyingOtp = async (req, res) => {
 
     if (clientOtp === dbOtp) {
       return res.status(200).json({
-        message: "OTP Verified Successfully",
+        message: "OTP Verified Successfully", redirect:'/dashboard',
       });
     } else {
       return res.status(400).json({ message: "Invalid OTP" })

@@ -30,3 +30,12 @@ A comprehensive University Management System Admin Pannel built with **Node.js**
    ```bash
    git clone https://github.com/your-username/university-management-system.git
    cd university-management-system
+
+## Set up the MySQL Database
+
+1. **Create a database:**
+   Create a database named `university_management` (or your preferred name).
+
+2. **Import the provided SQL file:**
+   ```bash
+   mysql -u [username] -p university_management < database.sql

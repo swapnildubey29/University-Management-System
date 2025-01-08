@@ -22,7 +22,7 @@ A comprehensive University Management System Admin Pannel built with **Node.js**
 - **Backend:** Node.js (Express.js framework)
 - **Database:** MySQL
 - **Authentication:** JSON Web Tokens (JWT) for secure authentication.
-- **Frontend:** (Optional, if applicable) HTML, CSS, JavaScript/React.js/Angular.
+- **Frontend:** HTML, CSS, JavaScript.
 
 ## Installation
 

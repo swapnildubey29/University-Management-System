@@ -31,7 +31,7 @@ app.get('/getcookie', async function(req,res){
 //Listen
 mysql.query("SELECT 1",(err) =>{
     if(err){
-        console.err("Error testing MySQL connection:", err.message)
+        console.error("Error testing MySQL connection:", err.message); 
         return;
     }
     console.log(chalk.bgCyan.white("MySQL DB Connected"))

@@ -36,7 +36,7 @@ mysql.query("SELECT 1",(err) =>{
     }
     console.log(chalk.bgCyan.white("MySQL DB Connected"))
 
-    const port = process.env.PORT
+    const port = process.env.PORT || 3000;
     app.listen(port, () => {
         console.log(chalk.bgMagenta.white(`Server is running on ${port}`))
     })

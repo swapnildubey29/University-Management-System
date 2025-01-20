@@ -29,15 +29,19 @@ app.get('/getcookie', async function(req,res){
 })
 
 //Listen
-mysql.query("SELECT 1",(err) =>{
-    if(err){
-        console.error("Error testing MySQL connection:", err.message); 
-        return;
-    }
-    console.log(chalk.bgCyan.white("MySQL DB Connected"))
-
-    const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
     app.listen(port, () => {
         console.log(chalk.bgMagenta.white(`Server is running on ${port}`))
     })
-})
+// mysql.query("SELECT 1",(err) =>{
+//     if(err){
+//         console.error("Error testing MySQL connection:", err.message); 
+//         return;
+//     }
+//     console.log(chalk.bgCyan.white("MySQL DB Connected"))
+
+//     const port = process.env.PORT || 3000;
+//     app.listen(port, () => {
+//         console.log(chalk.bgMagenta.white(`Server is running on ${port}`))
+//     })
+// })
